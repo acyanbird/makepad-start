@@ -9,6 +9,7 @@ live_design! {
     App = {{App}} {
         ui: <Window> { }
     }
+}
 
 
 // Define App struct containing UI and counter
