@@ -1,0 +1,7 @@
+[package]
+name = "makepad-start"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+makepad-widgets = { git = "https://github.com/makepad/makepad", branch = "rik" }
