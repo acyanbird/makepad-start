@@ -382,13 +382,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "makepad-start"
-version = "0.1.0"
-dependencies = [
- "makepad-widgets",
-]
-
-[[package]]
 name = "makepad-vector"
 version = "0.4.0"
 source = "git+https://github.com/makepad/makepad?branch=rik#6cad5845759ba9460d287b93c9a51a2ea56e3461"
@@ -427,6 +420,13 @@ source = "git+https://github.com/makepad/makepad?branch=rik#6cad5845759ba9460d28
 dependencies = [
  "zune-core",
  "zune-inflate",
+]
+
+[[package]]
+name = "makepad_book_ui_zoo"
+version = "0.1.0"
+dependencies = [
+ "makepad-widgets",
 ]
 
 [[package]]

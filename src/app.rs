@@ -15,7 +15,7 @@ live_design! {
                 color: #000 // black
                 }
             window: {
-                title: "Makepad zoo UI zoo"
+                title: "Makepad UI zoo"
             },
             caption_bar = {
                 visible: true,
