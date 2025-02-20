@@ -7,7 +7,22 @@ live_design! {
     use link::shaders::*;
     use link::widgets::*;
     App = {{App}} {
-        ui: <Window> { }
+        ui: <Window> {
+            show_bg: true,
+            draw_bg: {
+                // color:#970707    // dark red
+                // color: vec3(1, 1, 0) // yellow
+                color: #000 // black
+                }
+            window: {
+                title: "Makepad zoo UI zoo"
+            },
+            caption_bar = {
+                visible: true,
+                margin: {left: -500},
+                caption_label = { label = {text: "Makepad book UI Zoo "} }
+            },
+        }
     }
 }
 
