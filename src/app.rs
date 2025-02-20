@@ -6,11 +6,34 @@ live_design! {
     use link::theme::*;
     use link::shaders::*;
     use link::widgets::*;
+
+    ZooTitle = <View> { // Define ZooTitle component inheriting from View
+        width: Fill,    // Fill width
+        height: Fit,    // Fit height 
+        // flow: Down,
+        // align: { x: 0.0, y: 0.5},
+        margin: 10.0,
+        // spacing: 10.,
+        // show_bg: true,
+        title = <H2> {
+            text: "Makepad UI Zoo"
+        }
+    }
+
+    ZooHeader = <View> {
+        width: Fill, height: Fit,
+        flow: Down,
+        spacing: (THEME_SPACE_1),
+        margin: <THEME_MSPACE_H_3> {}
+        divider = <Hr> { }
+        title = <H3> { text: "Header" }
+    }
+
     App = {{App}} {
         ui: <Window> {
             show_bg: true,
             draw_bg: {
-                color: #970707    // dark red
+                // color: #970707    // dark red
                 // color: vec3(0.592, 0.027, 0.027) // dark red as above
                 // color: vec3(1, 1, 0) // yellow
                 // color: #000 // black
@@ -23,6 +46,16 @@ live_design! {
                 margin: {left: -500},
                 caption_label = { label = {text: "Makepad book UI Zoo caption bar"} },
             },
+
+            body = <View> {
+                width: Fill, height: Fill,
+                flow: Down,
+                spacing: 10.,
+                margin: 0.,
+                scroll_bars: <ScrollBars> {}
+
+                <ZooTitle> {}
+            }
         }
     }
 }
