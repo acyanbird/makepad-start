@@ -2,7 +2,7 @@ use makepad_widgets::*; // Import Makepad Widgets package
 
 // Define live_design macro for declaring UI components and layout
 live_design! {
-    // import Makepad theme and shaders, 以及 widgets
+    // import Makepad theme and shaders, and widgets
     use link::theme::*;
     use link::shaders::*;
     use link::widgets::*;
@@ -51,9 +51,9 @@ live_design! {
                 flow: Down,
                 spacing: 10.,   //spacing between child components
                 margin: 0.,     //margin around the component
+                scroll_bars: <ScrollBars> {}
 
                 <ZooTitle> {}
-
                 <ZooHeader> {
                     title = {text: "Intro"}
                     <ZooDesc> {
