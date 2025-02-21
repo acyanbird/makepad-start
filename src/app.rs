@@ -49,9 +49,8 @@ live_design! {
             body = <View> {
                 width: Fill, height: Fill,
                 flow: Down,
-                spacing: 10.,
-                margin: 0.,
-                scroll_bars: <ScrollBars> {}
+                spacing: 10.,   //spacing between child components
+                margin: 0.,     //margin around the component
 
                 <ZooTitle> {}
 
