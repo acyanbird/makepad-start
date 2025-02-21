@@ -22,10 +22,10 @@ live_design! {
         spacing: 10.,
         margin: {top: 0., right: 9, bottom: 0., left: 9}
         divider = <Hr> { }
-        title = <H3> { text: "Header" }
+        title = <H3> { }
     }
 
-    ZooDesc = <P> { text: "" }
+    ZooDesc = <P> {  }
 
 
     App = {{App}} {
