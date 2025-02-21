@@ -10,11 +10,7 @@ live_design! {
     ZooTitle = <View> { // Define ZooTitle component inheriting from View
         width: Fill,    // Fill width
         height: Fit,    // Fit height 
-        // flow: Down,
-        // align: { x: 0.0, y: 0.5},
         margin: 10.0,
-        // spacing: 10.,
-        // show_bg: true,
         title = <H2> {
             text: "Makepad UI Zoo"
         }
@@ -23,11 +19,14 @@ live_design! {
     ZooHeader = <View> {
         width: Fill, height: Fit,
         flow: Down,
-        spacing: (THEME_SPACE_1),
-        margin: <THEME_MSPACE_H_3> {}
+        spacing: 10.,
+        margin: {top: 0., right: 9, bottom: 0., left: 9}
         divider = <Hr> { }
         title = <H3> { text: "Header" }
     }
+
+    ZooDesc = <P> { text: "" }
+
 
     App = {{App}} {
         ui: <Window> {
@@ -55,6 +54,24 @@ live_design! {
                 scroll_bars: <ScrollBars> {}
 
                 <ZooTitle> {}
+
+                <ZooHeader> {
+                    title = {text: "Intro"}
+                    <ZooDesc> {
+                        text: "Intro."
+                    }
+                    <View> {
+                        width: Fill, height: Fit,
+                        flow: Down,
+                        <P> { text: "- Shader-based: what does that mean for how things work." }
+                        <P> { text: "- Inheritance mechanisms in the DSL." }
+                        <P> { text: "- Introduction to the layout system." }
+                        <P> { text: "- Base theme parameters." }
+                        <P> { text: "- Typographic system. Base font-size and contrast." }
+                        <P> { text: "- Space constants to control denseness of the design." }
+                        <P> { text: "- Transparency mechanism of the widgets. Nesting for structure." }
+                    }
+                }
             }
         }
     }
