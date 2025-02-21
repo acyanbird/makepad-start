@@ -74,6 +74,30 @@ live_design! {
                 }
 
                 <ZooHeader> {
+                    title = {text: "Control Heights & Text Baselines"}
+                    <ZooDesc> {
+                        text: "Control heights and text baselines"
+                    }
+                    <View> {
+                        width: Fill, height: Fit,
+                        align: { x: 0., y: 0.}
+                        flow: Right,
+                        spacing: (THEME_SPACE_2)
+                        <P> { text: "TestLabel", width: Fit}
+                        <Vr> {} 
+                        <LinkLabel> { text: "TestButton", width: Fit}
+                        <CheckBox> { text: "TestButton"}
+                        <CheckBoxToggle> { text: "TestButton"}
+                        <ButtonFlat> { text: "TestButton"}
+                        <Button> { text: "TestButton"}
+                        <TextInput> { text: "TestButton"}
+                        <DropDown> { }
+                        <Slider> { text: "TestButton"}
+                        <SliderBig> { text: "TestButton"}
+                    }
+                }
+
+                <ZooHeader> {
                     title = {text: "Typography"}
                     <ZooDesc> {
                         text: "Typography."
