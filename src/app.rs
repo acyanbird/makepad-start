@@ -72,6 +72,31 @@ live_design! {
                         <P> { text: "- Transparency mechanism of the widgets. Nesting for structure." }
                     }
                 }
+
+                <ZooHeader> {
+                    title = {text: "Typography"}
+                    <ZooDesc> {
+                        text: "Typography."
+                    }
+                    <View> {
+                        width: Fill, height: Fit,
+                        flow: Down,
+
+                        <H1> { text: "H1 headline" }
+                        <H1italic> { text: "H1 italic headline" }
+                        <H2> { text: "H2 headline" }
+                        <H2italic> { text: "H2 italic headline" }
+                        <H3> { text: "H3 headline" }
+                        <H3italic> { text: "H3 italic headline" }
+                        <H4> { text: "H4 headline" }
+                        <H4italic> { text: "H4 italic headline" }
+                        <P> { text: "P copy text" }
+                        <Pitalic> { text: "P italic copy text" }
+                        <Pbold> { text: "P bold copy text" }
+                        <Pbolditalic> { text: "P bold italic copy text" }
+                    }
+                }
+
             }
         }
     }
