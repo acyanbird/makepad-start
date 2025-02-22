@@ -7,6 +7,26 @@ live_design! {
     use link::shaders::*;
     use link::widgets::*;
 
+    COLOR_CONTAINER = (THEME_COLOR_D_1)
+
+    DEMO_COLOR_1 = #8f0
+    DEMO_COLOR_2 = #0f8
+    DEMO_COLOR_3 = #80f
+
+    ZooBlock = <RoundedView> {
+        width: 50., height: 50.
+        margin: 0.,
+        spacing: 0.,
+
+        show_bg: true;
+        draw_bg: {
+            fn get_color(self) -> vec4 {
+                return mix(self.color, self.color*0.5, self.pos.y);
+            }
+            radius: (THEME_CONTAINER_CORNER_RADIUS)
+        }
+    }
+
     ZooTitle = <View> { // Define ZooTitle component inheriting from View
         width: Fill,    // Fill width
         height: Fit,    // Fit height 
@@ -120,6 +140,100 @@ live_design! {
                     }
                 }
 
+                <ZooHeader> {
+                    title = {text: "<View>" }
+                    <ZooDesc> {text:"This is a gray view with flow set to Right\nTo show the extend, the background has been enabled using show_bg and a gray pixelshader has been provided to draw_bg."}
+                    <View> {
+                        height: Fit
+                        flow: Right,
+                        show_bg: true,
+                        draw_bg: { color: (COLOR_CONTAINER) }
+                        padding: 10.
+                        spacing: 10.
+                        <ZooBlock> {draw_bg:{color: (DEMO_COLOR_1)}}
+                        <ZooBlock> {draw_bg:{color: (DEMO_COLOR_2)}}
+                        <ZooBlock> {draw_bg:{color: (DEMO_COLOR_3)}}
+                    }
+
+                    <ZooDesc> {text:"This utlizes a <Filler> to separate items."}
+                    <View> {
+                        height: Fit
+                        flow: Right,
+                        show_bg: true,
+                        draw_bg: { color: (COLOR_CONTAINER) }
+                        padding: 10.
+                        spacing: 10.
+                        <ZooBlock> {draw_bg:{color: (DEMO_COLOR_1)}}
+                        <Filler> {}
+                        <ZooBlock> {draw_bg:{color: (DEMO_COLOR_2)}}
+                        <ZooBlock> {draw_bg:{color: (DEMO_COLOR_3)}}
+                    }
+                    
+                    <ZooDesc> {text:"This view is bigger on the inside"}
+                    <View> {
+                        width: 150, height: 150,
+                        flow: Right,
+                        padding: 10.
+                        spacing: 10.
+
+                        show_bg: true,
+                        draw_bg: { color: (COLOR_CONTAINER) }
+                        scroll_bars: <ScrollBars> {}
+
+                        <View> {
+                            width: Fit, height: Fit,
+                            flow: Down,
+                            show_bg: false,
+                            spacing: 10
+                            <ZooBlock> {draw_bg:{color: (DEMO_COLOR_1)}}
+                            <ZooBlock> {draw_bg:{color: (DEMO_COLOR_2)}}
+                            <ZooBlock> {draw_bg:{color: (DEMO_COLOR_3)}}
+                            <ZooBlock> {draw_bg:{color: (DEMO_COLOR_2)}}
+                        }
+
+                        <View> {
+                            width: Fit, height: Fit,
+                            flow: Down,
+                            show_bg: false,
+                            spacing: 10
+                            <ZooBlock> {draw_bg:{color: (DEMO_COLOR_1)}}
+                            <ZooBlock> {draw_bg:{color: (DEMO_COLOR_2)}}
+                            <ZooBlock> {draw_bg:{color: (DEMO_COLOR_3)}}
+                            <ZooBlock> {draw_bg:{color: (DEMO_COLOR_2)}}
+                        }
+
+                        <View> {
+                            width: Fit, height: Fit,
+                            flow: Down,
+                            show_bg: false,
+                            <ZooBlock> {draw_bg:{color: (DEMO_COLOR_1)}}
+                            <ZooBlock> {draw_bg:{color: (DEMO_COLOR_2)}}
+                            <ZooBlock> {draw_bg:{color: (DEMO_COLOR_3)}}
+                            <ZooBlock> {draw_bg:{color: (DEMO_COLOR_2)}}
+                        }
+
+                        <View> {
+                            width: Fit, height: Fit,
+                            flow: Down,
+                            show_bg: false,
+                            spacing: 10
+                            <ZooBlock> {draw_bg:{color: (DEMO_COLOR_1)}}
+                            <ZooBlock> {draw_bg:{color: (DEMO_COLOR_2)}}
+                            <ZooBlock> {draw_bg:{color: (DEMO_COLOR_3)}}
+                            <ZooBlock> {draw_bg:{color: (DEMO_COLOR_2)}}
+                        }
+
+                        <View> {
+                            width: Fit, height: Fit,
+                            flow: Down,
+                            show_bg: false,
+                            spacing: 10
+                            <ZooBlock> {draw_bg:{color: (DEMO_COLOR_1)}}
+                            <ZooBlock> {draw_bg:{color: (DEMO_COLOR_2)}}
+                            <ZooBlock> {draw_bg:{color: (DEMO_COLOR_3)}}
+                        }
+                    }
+                }
             }
         }
     }
