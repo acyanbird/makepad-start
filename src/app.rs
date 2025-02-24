@@ -1,4 +1,6 @@
 use makepad_widgets::*; // Import Makepad Widgets package
+use makepad_platform::live_atomic::*;
+
 
 // Define live_design macro for declaring UI components and layout
 live_design! {
@@ -550,10 +552,32 @@ live_design! {
                     }
                 }
 
+
+                <ZooHeader> {
+                    padding: 50
+                    title = {text:"<DropDown>"}
+                    <ZooDesc> {text:"DropDown control. This control currently needs to be databound which needs some plumbing. In this sample there is a binding context struct in the main app struct - which gets bound on app start - and updated during handle_actions."}
+                    <ZooGroup> {
+                        dropdown = <DropDown> {
+                            labels: ["Value One", "Value Two", "Thrice", "Fourth Value", "Option E", "Hexagons"],
+                            values: [ValueOne, ValueTwo, Thrice, FourthValue, OptionE, Hexagons]
+                        }
+                    }
+                }
+
+                <ZooHeader> {
+                    title = {text:"Place holder"}
+                    <ZooDesc> {text:"Place holder for drop down"}
+                    
+                }
+
+            }
+                
+
             }
         }
     }
-}
+
 
 
 // Define App struct containing UI and counter
@@ -607,3 +631,14 @@ impl AppMain for App {
 
 // Define application entry point
 app_main!(App);
+
+#[derive(Live, LiveHook, PartialEq, LiveAtomic, Debug, LiveRead)]
+pub enum DropDownEnum {
+    #[pick]
+    ValueOne,
+    ValueTwo,
+    Thrice,
+    FourthValue,
+    OptionE,
+    Hexagons,
+}
