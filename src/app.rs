@@ -372,6 +372,184 @@ live_design! {
                     }
                 }
 
+                <ZooHeader> {
+                    title = { text:"<Slider>" }
+                    <ZooDesc> { text:"A parameter dragger" }
+                    <ZooGroup> {
+                        width: Fill, height: Fit,
+                        flow: Right,
+                        spacing: 10.0,
+                        align: { x: 0., y: 0.}
+                        <View> {
+                            width: Fill, height: Fit,
+                            flow: Down,
+                            <Slider> { text: "Default" }
+                            <Slider> { text: "min 0 to max 100", min: 0., max: 100. }
+                            <Slider> { text: "precision 7", precision: 4 }  // max precision
+                            <Slider> { text: "stepped 0.1", step: 0.1 }
+                        }
+                        <View> {
+                            width: Fill, height: Fit,
+                            flow: Down,
+                            <SliderBig> { text: "Default 0.2", default: 0.2 }
+                            <SliderBig> { text: "min -50 to max 50", min: -50, max: 50. }
+                            <SliderBig> { text: "precision 8", precision: 8 }   // when greater than 7, auto jump to 16 and won't changed
+                            <SliderBig> { text: "stepped 0.2", step: 0.2 }
+                        }
+                        <View> {
+                            width: Fill, height: Fit,
+                            flow: Down,
+                            <SliderAlt1> {
+                                text: "Colored",
+                                draw_slider: {
+                                    val_color_a: (#FFCC00),
+                                    val_color_b: #f00,
+                               }
+                            }
+                        }
+                    }
+                }
+
+                <View> {
+                    width: Fill, height: Fit,
+                    flow: Right,
+                    <Rotary> {
+                        width: 100, height: 100,
+                        text: "Rotary",
+                        draw_slider: {
+                            gap: 90.,
+                            width: 30.
+                            padding: 2.,
+                        }
+                    }
+                    <Rotary> {
+                        width: 100, height: 100,
+                        text: "Change width",
+                        draw_slider: {
+                            gap: 90.,
+                            width: 10.,
+                            padding: 2.,
+                        }
+                    }
+                    <Rotary> {
+                        width: 100, height: 100,
+                        text: "Change gap",
+                        draw_slider: {
+                            gap: 180.,
+                            width: 10.
+                            padding: 4,
+                        }
+                    }
+                    <Rotary> {
+                        width: 150, height: 150,
+                        text: "Change size",
+                        draw_slider: {
+                            gap: 90.,
+                            width: 20.
+                            padding: 4.,
+                        }
+                    }
+                }
+
+                <View> {
+                    width: Fill, height: Fit,
+                    flow: Right,
+                    <RotaryFlat> {
+                        width: 100., height: 100.,
+                        text: "Colored",
+                        draw_slider: {
+                            gap: 0.,
+                            width: 20.
+                            padding: 0.,
+                        }
+                    }
+                    <RotaryFlat> {
+                        width: 120., height: 120.,
+                        text: "Solid",
+                        draw_text: {
+                            color: #0ff;
+                        }
+                        draw_slider: {
+                            val_color_a: #ff0,
+                            val_color_b: #f00,
+                            handle_color: #f,
+                            gap: 180.,
+                            width: 20.,
+                            padding: 2.,
+                        }
+                    }
+                    <RotaryFlat> {
+                        width: 120., height: 120.,
+                        text: "Solid",
+                        draw_slider: {
+                            val_color_a: #0ff,
+                            val_color_b: #ff0,
+                            handle_color: #f,
+                            gap: 90.,
+                            width: 20.,
+                            padding: 2.,
+                        }
+                    }
+                    <RotaryFlat> {
+                        width: 100., height: 90.,
+                        text: "Solid",
+                        draw_slider: {
+                            gap: 90.,
+                            padding: 10.,
+                            width: 20.,
+                            handle_color: #f0f,
+                        }
+                    }
+                    <RotaryFlat> {
+                        width: 150., height: 150.,
+                        text: "Solid",
+                        draw_slider: {
+                            val_color_a: #0ff,
+                            val_color_b: #0ff,
+                            gap: 180.,
+                            padding: 4.,
+                            width: 6.,
+                        }
+                    }
+                    <RotaryFlat> {
+                        width: Fill, height: 150.,
+                        text: "Solid",
+                        draw_slider: {
+                            val_color_a: #8;
+                            val_color_b: #ff0;
+                            gap: 75.,
+                            width: 40.0,
+                            padding: 4.,
+                        }
+                    }
+                }
+
+                <View> {
+                    width: Fill, height: Fit,
+                    flow: Right,
+                    <RotarySolid> {
+                        width: 100, height: 100,
+                        text: "Colored",
+                        draw_slider: {
+                            gap: 90.,
+                        }
+                    }
+                    <RotarySolid> {
+                        width: 200, height: 150,
+                        text: "Colored",
+                        draw_slider: {
+                            gap: 180.,
+                        }
+                    }
+                    <RotarySolid> {
+                        width: Fill, height: 150,
+                        text: "Colored",
+                        draw_slider: {
+                            gap: 60.,
+                        }
+                    }
+                }
+
             }
         }
     }
