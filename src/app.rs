@@ -285,7 +285,7 @@ live_design! {
                         <Label> { text: "<ButtonIcon>"}
                         iconbutton = <ButtonIcon> {
                             draw_icon: {
-                                color: #f00,
+                                color: #ff0,
                                 svg_file: dep("crate://self/resources/Icon_Favorite.svg"),
                             }
                             text: "I can have a icon!"
@@ -321,20 +321,53 @@ live_design! {
                             }
                         }
 
-                        <H4> { text: "Freely styled button"}
-                        <Label> { text: "<Button>"}
-                        styledbutton = <Button> {
-                            draw_bg: {
-                                fn pixel(self) -> vec4 {
-                                    return (THEME_COLOR_MAKEPAD) + self.pressed * vec4(1., 1., 1., 1.)
+                            <H4> { text: "Hover"}
+                            styledbutton = <Button> {
+                                draw_bg: {
+                                    fn pixel(self) -> vec4 {
+                                        return (THEME_COLOR_MAKEPAD) + self.pressed * vec4(1., 1., 1., 1.)
+                                    }
                                 }
+                                draw_text: {
+                                    fn get_color(self) -> vec4 {
+                                        return (THEME_COLOR_U_5) - vec4(0., 0.1, 0.4, 0.) * self.hover - self.pressed * vec4(1., 1., 1., 0.);
+                                    }
+                                }
+                                text: "I can be styled!"
                             }
+                        
+                    
+                        }
+                }
+
+                <ZooHeader> {
+                    title = {text:"<Label>"}
+                    <ZooDesc> { text:"Default single line textbox" }
+                    <ZooGroup> { <Label> { text: "This is a small line of text" } }
+                    <ZooGroup> {
+                        <Label> {
                             draw_text: {
-                                fn get_color(self) -> vec4 {
-                                    return (THEME_COLOR_U_5) - vec4(0., 0.1, 0.4, 0.) * self.hover - self.pressed * vec4(1., 1., 1., 0.);
+                                color: #fff,
+                                text_style: {
+                                    font: {path: dep("crate://self/resources/XITSOneText-BoldItalic.ttf")},
+                                    font_size: 20,
                                 }
-                            }
-                            text: "I can be styled!"
+                            },
+                            text: "You can style text using colors and fonts"
+                        }
+                    }
+                    <ZooGroup> {
+                        <Label> {
+                            draw_text: {
+                                fn get_color(self) ->vec4{
+                                    return mix((THEME_COLOR_MAKEPAD), (THEME_COLOR_U_HIDDEN), self.pos.x)
+                                }
+                                color: (THEME_COLOR_MAKEPAD)
+                                text_style: {
+                                    font_size: 40.,
+                                }
+                            },
+                            text: "OR EVEN SOME PIXELSHADERS"
                         }
                     }
                 }
@@ -375,13 +408,6 @@ impl MatchEvent for App{
         self.counter += 1;
         let btn = self.ui.button(id!(basicbutton));
         btn.set_text(cx,&format!("Clicky clicky! {}", self.counter));
-    }
-
-    if self.ui.button(id!(styledbutton)).clicked(&actions) {
-        log!("STYLED BUTTON CLICKED {}", self.counter);
-        self.counter += 1;
-        let btn = self.ui.button(id!(styledbutton));
-        btn.set_text(cx,&format!("Styled button clicked: {}", self.counter));
     }
 
     if self.ui.button(id!(iconbutton)).clicked(&actions) {
