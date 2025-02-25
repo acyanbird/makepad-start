@@ -554,7 +554,7 @@ live_design! {
 
 
                 <ZooHeader> {
-                    padding: 50
+                    scroll_bars: <ScrollBars> {}
                     title = {text:"<DropDown>"}
                     <ZooDesc> {text:"DropDown control. This control currently needs to be databound which needs some plumbing. In this sample there is a binding context struct in the main app struct - which gets bound on app start - and updated during handle_actions."}
                     <ZooGroup> {
@@ -585,7 +585,7 @@ live_design! {
 pub struct App {
     #[live]
     ui: WidgetRef, // UI component reference
-    #[rust] counter: usize  // use rust instead of live for counter
+    #[rust] counter: usize,  // use rust instead of live for counter
 }
 
 // Implement LiveRegister trait for registering live design
