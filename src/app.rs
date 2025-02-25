@@ -90,7 +90,6 @@ live_design! {
                         <ButtonFlat> { text: "TestButton"}
                         <Button> { text: "TestButton"}
                         <TextInput> { text: "TestButton"}
-                        <DropDown> { }
                         <Slider> { text: "TestButton"}
                         <SliderBig> { text: "TestButton"}
                     }
