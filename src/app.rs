@@ -855,79 +855,9 @@ live_design! {
                 }
 
                 <H4> { text: "Animation"}
-                <Button> {
-                // Allows instantiation of customly styled elements as i.e. <MyButton> {}.
-
-                    // BUTTON SPECIFIC PROPERTIES
-
-                    draw_bg: { // Shader object that draws the bg.
-                            fn pixel(self) -> vec4 {
-                            return mix( // State transition animations.
-                                mix(
-                                    #800,   
-                                    mix(#800, #f, 0.5), // when hover 1
-                                    self.hover
-                                ),
-                                #00f,   // blue when pressed
-                                self.pressed
-                            )
-                        }
-                    },
-
-                    draw_icon: { // Shader object that draws the icon.
-                        svg_file: dep("crate://self/resources/Icon_Favorite.svg"),
-                        // Icon file dependency.
-
-                        fn get_color(self) -> vec4 { // Overwrite the shader's fill method.
-                            return mix( // State transition animations.
-                                mix(
-                                    #f0f,   // pink
-                                    #fff,   // white
-                                    self.hover
-                                ),
-                                #000,   // black
-                                self.pressed
-                            )
-                        }
-                    }
-
-                    grab_key_focus: true, // Keyboard gets focus when clicked.
-
-                    icon_walk: {
-                        margin: 10.,
-                        width: 16.,
-                        height: Fit
-                    }
-
-                    label_walk: {
-                        margin: 2.,
-                        width: Fit,
-                        height: Fit,
-                    }
-
-                    text: "I can be clicked", // Text label.
-
-                    height: Fit,
-                    // Element assumes the height of its children.
-
-                    width: Fill,
-                    // Element assumes the width of its children.
-
-                    margin: 5.0
-                    padding: { top: 3.0, right: 6.0, bottom: 3.0, left: 6.0 },
-                    // Individual space between the element's border and its content
-                    // for top and left.
-
-                    flow: Right,
-                    // Stacks children from left to right.
-
-                    spacing: 5.0,
-                    // A spacing of 10.0 between children.
-
-                    align: { x: 0.5, y: 0.5 },
-                    // Positions children at the left (x) bottom (y) corner of the parent.
-                }
-
+                //  TODO
+                // Find a more suitable example for animation
+        
 
             }
         }
