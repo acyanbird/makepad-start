@@ -830,6 +830,29 @@ live_design! {
                     }
                 }
 
+                <ZooHeader> {
+                    title = {text:"<SlidesView>"}
+                    width: Fill, height: Fit,
+                    <ZooDesc> {text:"Slides View"}
+                    <View> {
+                        width: Fill, height: Fit,
+                        <SlidesView> {
+                            width: Fill, height: 400,
+
+                            <SlideChapter> {
+                                title = {text: "Hey!"},
+                                <SlideBody> {text: "This is the 1st slide. Use your right\ncursor key to show the next slide."}
+                            }
+
+                            <Slide> {
+                                title = {text: "Second slide"},
+                                <SlideBody> {text: "This is the 2nd slide. Use your left\ncursor key to show the previous slide."}
+                            }
+
+                        }
+                    }
+                }
+
 
             }
         }
