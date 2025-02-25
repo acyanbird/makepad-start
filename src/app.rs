@@ -631,6 +631,67 @@ live_design! {
                     }
                 }
 
+                <ZooHeader> {
+                    title = {text:"<CheckBox>"}
+                    <ZooDesc> {text:"Checkbox"}
+                    <ZooGroup> {
+                        height: Fit
+                        spacing: (THEME_SPACE_2)
+                        flow: Down,
+                        <H4> { text: "Output demo"}
+                        <View> {
+                            height: Fit
+                            flow: Right
+                            align: { x: 0.0, y: 0.5}
+                            simplecheckbox = <CheckBox> {text:"Check me out!"}
+                            simplecheckbox_output = <Label> { text:"hmm" }
+                        }
+                        <H4> { text: "Standard Mode"}
+                        <View> {
+                            height: Fit
+                            flow: Right
+                            spacing: (THEME_SPACE_1)
+                            align: { x: 0.0, y: 0.5}
+                            <CheckBox> {text:"Check me out!"}
+                            <CheckBox> {text:"Check me out!"}
+                            <CheckBox> {text:"Check me out!"}
+                        }
+                        <H4> { text: "Toggle Mode"}
+                        <View> {
+                            height: Fit
+                            flow: Right
+                            spacing: (THEME_SPACE_1)
+                            align: { x: 0.0, y: 0.5}
+                            <CheckBoxToggle> {text:"Check me out!" }
+                            <CheckBoxToggle> {text:"Check me out!" }
+                            <CheckBoxToggle> {text:"Check me out!" }
+                        }
+
+                        <H4> { text: "Custom Icon Mode"}
+                        <View> {
+                            height: Fit
+                            flow: Right
+                            spacing: (THEME_SPACE_1)
+                            align: { x: 0.0, y: 0.5}
+                            <CheckBoxCustom> {
+                                text:"Check me out!"
+                                draw_check: { check_type: None }
+                                draw_icon: {
+                                    color_active: #f00,
+                                    svg_file: dep("crate://self/resources/Icon_Favorite.svg"),
+                                }
+                            }
+                            <CheckBoxCustom> {
+                                text:"Check me out!"
+                                draw_check: { check_type: None }
+                                draw_icon: {
+                                    svg_file: dep("crate://self/resources/Icon_Favorite.svg"),
+                                }
+                            }
+                        }
+                    }
+                }
+
 
             }
         }
@@ -675,6 +736,13 @@ impl MatchEvent for App{
         self.counter += 1;
         let btn = self.ui.button(id!(iconbutton));
         btn.set_text(cx,&format!("Icon button clicked: {}", self.counter));
+    }
+
+    if let Some(check) = self.ui.check_box(id!(simplecheckbox)).changed(actions) {
+        log!("CHECK BUTTON CLICKED {} {}", self.counter, check);
+        self.counter += 1;
+        let lbl = self.ui.label(id!(simplecheckbox_output));
+        lbl.set_text(cx,&format!("{} {}" , self.counter, check));
     }
 }
 }
