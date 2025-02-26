@@ -1,5 +1,6 @@
 use makepad_widgets::*; // Import Makepad Widgets package
 use makepad_platform::live_atomic::*;
+use crate::typing_animation::*; // Import TypingAnimation component
 
 
 // Define live_design macro for declaring UI components and layout
@@ -8,6 +9,7 @@ live_design! {
     use link::theme::*;
     use link::shaders::*;
     use link::widgets::*;
+    use crate::typing_animation::*;
 
     // define color of background container
     COLOR_CONTAINER = (THEME_COLOR_D_1)
@@ -1186,6 +1188,18 @@ live_design! {
                     title = {text:"Place holder"}
                     <ZooDesc> {text:"Place holder for drop down"}
                     
+                }
+
+                <ZooHeader> {
+                    title = {text:"Animation"}
+                    <ZooDesc> {text:"Typing animation"}
+                    typing_animation = <TypingAnimation> {
+                        margin: {top: 1.1, left: -4 }
+                        padding: 0.0,
+                        draw_bg: {
+                            color: (#fff),
+                        }
+                    }
                 }
 
             }
