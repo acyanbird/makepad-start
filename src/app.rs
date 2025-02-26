@@ -1,4 +1,6 @@
 use makepad_widgets::*; // Import Makepad Widgets package
+use makepad_platform::live_atomic::*;
+
 
 // Define live_design macro for declaring UI components and layout
 live_design! {
@@ -859,10 +861,340 @@ live_design! {
                 // Find a more suitable example for animation
         
 
+                <ZooHeader> {
+                    title = {text:"<Html>"}
+                    <ZooDesc> {text:"HTML Widget"}
+                    <ZooGroup> {
+                        <Html> {
+                            width:Fill, height:Fit,
+                            body:"<H1>H1 Headline</H1><H2>H2 Headline</H2><H3>H3 Headline</H3><H4>H4 Headline</H4><H5>H5 Headline</H5><H6>H6 Headline</H6>This is <b>bold</b>&nbsp;and <i>italic text</i>.<sep><b><i>Bold italic</i></b>, <u>underlined</u>, and <s>strike through</s> text. <p>This is a paragraph</p> <code>A code block</code>. <br/> And this is a <a href='https://www.google.com/'>link</a><br/><ul><li>lorem</li><li>ipsum</li><li>dolor</li></ul><ol><li>lorem</li><li>ipsum</li><li>dolor</li></ol><br/> <blockquote>Blockquote</blockquote> <pre>pre</pre><sub>sub</sub><del>del</del>"
+                        }
+                    }
+                }
+
+                <ZooHeader> {
+                    title = {text:"<Markdown>"}
+                    <ZooDesc> {text:"Markdown"}
+                    <ZooGroup> {
+                        <Markdown> {
+                            width:Fill, height: Fit,
+                            body:"# Headline 1 \n ## Headline 2 \n ### Headline 3 \n #### Headline 4 \n This is standard text with a  \n\n line break a short ~~strike through~~ demo.\n\n *Italic text* \n\n **Bold text** \n\n - Bullet\n - Another bullet\n\n - Third bullet\n\n 1. Numbered list Bullet\n 2. Another list entry\n\n 3. Third list entry\n\n `Monospaced text`\n\n> This is a quote.\n\nThis is `inline code`.\n\n ```code block
+                            ```"
+                        }
+                    }
+                }
+
+                <ZooHeader> {
+                    title = {text:"<Image>"}
+                    <ZooDesc> {text:"A static inline image from a resource."}
+                    <ZooGroup> {
+                        height: Fit, width: Fill,
+                        spacing: (THEME_SPACE_2)
+                        scroll_bars: <ScrollBars> {}
+                        <View> {
+                            width: Fit, height: Fit, flow: Down,
+                            <View> {
+                                show_bg: true, draw_bg: { color: (THEME_COLOR_BG_CONTAINER)}, width: 125, height: 250, flow: Down,
+                                <Image> { source: dep("crate://self/resources/ducky.png" ) }
+                            }
+                            <P> { text: "Default" }
+                        }
+
+                        <View> {
+                            width: Fit, height: Fit, flow: Down,
+                            <View> {
+                                show_bg: true, draw_bg: { color: (THEME_COLOR_BG_CONTAINER)}, width: 125, height: 250,
+                                <Image> { width: Fill, height: Fill, source: dep("crate://self/resources/ducky.png"), fit: Stretch }
+                            }
+                            <P> { text: "fit: Stretch" }
+                        }
+                        <View> {
+                            width: Fit, height: Fit, flow: Down,
+                            <View> {
+                                show_bg: true, draw_bg: { color: (THEME_COLOR_BG_CONTAINER)}, width: 125, height: 250,
+                                <Image> { width: Fill, height: Fill, source: dep("crate://self/resources/ducky.png" ), fit: Horizontal }
+                            }
+                            <P> { text: "fit: Horizontal" }
+                        }
+                        <View> {
+                            width: Fit, height: Fit, flow: Down,
+                            <View> {
+                                show_bg: true, draw_bg: { color: (THEME_COLOR_BG_CONTAINER)}, width: 125, height: 250,
+                                <Image> { width: Fill, height: Fill, source: dep("crate://self/resources/ducky.png" ), fit: Vertical }
+                            }
+                            <P> { text: "fit: Vertical" }
+                        }
+                        <View> {
+                            width: Fit, height: Fit, flow: Down,
+                            <View> {
+                                show_bg: true, draw_bg: { color: (THEME_COLOR_BG_CONTAINER)}, width: 50, height: 250,
+                                <Image> { width: Fill, height: Fill, source: dep("crate://self/resources/ducky.png" ), fit: Smallest }
+                            }
+                            <P> { text: "fit: Smallest" }
+                        }
+                        <View> {
+                            width: Fit, height: Fit, flow: Down,
+                            <View> {
+                                show_bg: true, draw_bg: { color: (THEME_COLOR_BG_CONTAINER)}, width: 125, height: 250,
+                                <Image> { width: Fill, height: Fill, source: dep("crate://self/resources/ducky.png" ), fit: Biggest }
+                            }
+                            <P> { text: "fit: Biggest" }
+                        }
+                    }
+                }
+
+                <ZooHeader> {
+                    title = {text:"<CheckBox>"}
+                    <ZooDesc> {text:"Checkbox"}
+                    <ZooGroup> {
+                        height: Fit
+                        spacing: (THEME_SPACE_2)
+                        flow: Down,
+                        <H4> { text: "Output demo"}
+                        <View> {
+                            height: Fit
+                            flow: Right
+                            align: { x: 0.0, y: 0.5}
+                            simplecheckbox = <CheckBox> {text:"Check me out!"}
+                            simplecheckbox_output = <Label> { text:"hmm" }
+                        }
+                        <H4> { text: "Standard Mode"}
+                        <View> {
+                            height: Fit
+                            flow: Right
+                            spacing: (THEME_SPACE_1)
+                            align: { x: 0.0, y: 0.5}
+                            <CheckBox> {text:"Check me out!"}
+                            <CheckBox> {text:"Check me out!"}
+                            <CheckBox> {text:"Check me out!"}
+                        }
+                        <H4> { text: "Toggle Mode"}
+                        <View> {
+                            height: Fit
+                            flow: Right
+                            spacing: (THEME_SPACE_1)
+                            align: { x: 0.0, y: 0.5}
+                            <CheckBoxToggle> {text:"Check me out!" }
+                            <CheckBoxToggle> {text:"Check me out!" }
+                            <CheckBoxToggle> {text:"Check me out!" }
+                        }
+
+                        <H4> { text: "Custom Icon Mode"}
+                        <View> {
+                            height: Fit
+                            flow: Right
+                            spacing: (THEME_SPACE_1)
+                            align: { x: 0.0, y: 0.5}
+                            <CheckBoxCustom> {
+                                text:"Check me out!"
+                                draw_check: { check_type: None }
+                                draw_icon: {
+                                    color_active: #f00,
+                                    svg_file: dep("crate://self/resources/Icon_Favorite.svg"),
+                                }
+                            }
+                            <CheckBoxCustom> {
+                                text:"Check me out!"
+                                draw_check: { check_type: None }
+                                draw_icon: {
+                                    svg_file: dep("crate://self/resources/Icon_Favorite.svg"),
+                                }
+                            }
+                        }
+                    }
+                }
+
+                <ZooHeader> {
+                    title = {text:"<RadioButton>"}
+                    <ZooDesc> {text:"Todo: List the different radio button templates."}
+                    <ZooGroup> {
+                        flow: Down,
+                        spacing: (THEME_SPACE_2)
+                        <H4> { text: "Default"}
+                        <View> {
+                            height: Fit
+                            flow: Right
+                            align: { x: 0.0, y: 0.5 }
+                            radios_demo = <View> {
+                                spacing: (THEME_SPACE_2)
+                                width: Fit, height: Fit,
+                                radio1 = <RadioButton> { text: "Option 1" }
+                                radio2 = <RadioButton> { text: "Option 2" }
+                                radio3 = <RadioButton> { text: "Option 3" }
+                                radio4 = <RadioButton> { text: "Option 4" }
+                            }
+                        }
+
+                        <H4> { text: "Custom Radios"}
+                        <View> {
+                            height: Fit
+                            flow: Right
+                            align: { x: 0.0, y: 0.5 }
+                            iconradios_demo = <View> {
+                                width: Fit, height: Fit,
+                                spacing: (THEME_SPACE_2)
+                                flow: Down,
+
+                                radio1 = <RadioButtonCustom> {
+                                    text: "Option 1"
+                                    icon_walk: {
+                                        width: 12.5, height: Fit,
+                                    }
+                                    draw_icon: {
+                                        svg_file: dep("crate://self/resources/Icon_Favorite.svg"),
+                                    }
+                                }
+                                radio2 = <RadioButtonCustom> {
+                                    text: "Option 2"
+                                    icon_walk: {
+                                        width: 12.5, height: Fit,
+                                    }
+                                    draw_icon: {
+                                        color_active: #0f0,
+                                        svg_file: dep("crate://self/resources/Icon_Favorite.svg"),
+                                    }
+                                }
+                                radio3 = <RadioButtonCustom> {
+                                    text: "Option 3"
+                                    icon_walk: {
+                                        width: 12.5, height: Fit,
+                                    }
+                                    draw_icon: {
+                                        color_active: #0ff,
+                                        svg_file: dep("crate://self/resources/Icon_Favorite.svg"),
+                                    }
+                                }
+                                radio4 = <RadioButtonCustom> {
+                                    text: "Option 4"
+                                    icon_walk: {
+                                        width: 12.5, height: Fit,
+                                    }
+                                    draw_icon: {
+                                        color_active: #f00,
+                                        svg_file: dep("crate://self/resources/Icon_Favorite.svg"),
+                                    }
+                                }
+                            }
+                        }
+
+                        <H4> { text: "Text only"}
+                        <View> {
+                            height: Fit
+                            flow: Right
+                            align: { x: 0.0, y: 0.5 }
+                            textonlyradios_demo = <View> {
+                                width: Fit, height: Fit,
+                                flow: Right,
+                                spacing: (THEME_SPACE_2)
+                                radio1 = <RadioButtonTextual> { text: "Option 1" }
+                                radio2 = <RadioButtonTextual> { text: "Option 2" }
+                                radio3 = <RadioButtonTextual> { text: "Option 3" }
+                                radio4 = <RadioButtonTextual> { text: "Option 4" }
+                            }
+                        }
+
+
+                        <H4> { text: "Button Group"}
+                        <ButtonGroup> {
+                            height: Fit
+                            flow: Right
+                            align: { x: 0.0, y: 0.5 }
+                            radiotabs_demo = <View> {
+                                width: Fit, height: Fit,
+                                radio1 = <RadioButtonTab> { text: "Option 1" }
+                                radio2 = <RadioButtonTab> { text: "Option 2" }
+                                radio3 = <RadioButtonTab> { text: "Option 3" }
+                                radio4 = <RadioButtonTab> { text: "Option 4" }
+                            }
+                        }
+
+                        <H4> { text: "Media"}
+                        <View> {
+                            height: Fit
+                            flow: Right
+                            align: { x: 0.0, y: 0.5 }
+                            mediaradios_demo = <View> {
+                                width: Fit, height: Fit,
+                                flow: Right,
+                                spacing: (THEME_SPACE_2)
+                                radio1 = <RadioButtonImage> {
+                                    width: 50, height: 50,
+                                    media: Image,
+                                    image: <Image> { source: dep("crate://self/resources/ducky.png" ) }
+                                }
+                                radio2 = <RadioButtonImage> {
+                                    width: 50, height: 50,
+                                    media: Image,
+                                    image: <Image> { source: dep("crate://self/resources/ducky.png" ) }
+                                }
+                                radio3 = <RadioButtonImage> {
+                                    width: 50, height: 50,
+                                    media: Image,
+                                    image: <Image> { source: dep("crate://self/resources/ducky.png" ) }
+                                }
+                                radio4 = <RadioButtonImage> {
+                                    width: 50, height: 50,
+                                    media: Image,
+                                    image: <Image> { source: dep("crate://self/resources/ducky.png" ) }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                <ZooHeader> {
+                    title = {text:"<SlidesView>"}
+                    width: Fill, height: Fit,
+                    <ZooDesc> {text:"Slides View"}
+                    <View> {
+                        width: Fill, height: Fit,
+                        <SlidesView> {
+                            width: Fill, height: 400,
+
+                            <SlideChapter> {
+                                title = {text: "Hey!"},
+                                <SlideBody> {text: "This is the 1st slide. Use your right\ncursor key to show the next slide."}
+                            }
+
+                            <Slide> {
+                                title = {text: "Second slide"},
+                                <SlideBody> {text: "This is the 2nd slide. Use your left\ncursor key to show the previous slide."}
+                            }
+
+                        }
+                    }
+                }
+
+                <H4> { text: "Animation"}
+                //  TODO
+                // Find a more suitable example for animation
+        
+
+
+                <ZooHeader> {
+                    title = {text:"<DropDown>"}
+                    <ZooDesc> {text:"DropDown control. This control currently needs to be databound which needs some plumbing. In this sample there is a binding context struct in the main app struct - which gets bound on app start - and updated during handle_actions."}
+                    <ZooGroup> {
+                        dropdown = <DropDown> {
+                            labels: ["Value One", "Value Two", "Thrice", "Fourth Value", "Option E", "Hexagons"],
+                            values: [ValueOne, ValueTwo, Thrice, FourthValue, OptionE, Hexagons]
+                        }
+                    }
+                }
+
+                <ZooHeader> {
+                    title = {text:"Place holder"}
+                    <ZooDesc> {text:"Place holder for drop down"}
+                    
+                }
+
+            }
+                
+
             }
         }
     }
-}
+
 
 
 // Define App struct containing UI and counter
@@ -878,6 +1210,7 @@ impl LiveRegister for App {
     fn live_register(cx: &mut Cx) {
         // Register Makepad Widgets' live design
         makepad_widgets::live_design(cx);
+        crate::typing_animation::live_design(cx);
     }
 }
 
