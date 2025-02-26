@@ -554,7 +554,6 @@ live_design! {
 
 
                 <ZooHeader> {
-                    scroll_bars: <ScrollBars> {}
                     title = {text:"<DropDown>"}
                     <ZooDesc> {text:"DropDown control. This control currently needs to be databound which needs some plumbing. In this sample there is a binding context struct in the main app struct - which gets bound on app start - and updated during handle_actions."}
                     <ZooGroup> {
@@ -598,6 +597,12 @@ impl LiveRegister for App {
 
 impl MatchEvent for App{
     fn handle_actions(&mut self, cx: &mut Cx, actions:&Actions){
+        // Handle DropDown selection change
+        if let Some(selected) = self.ui.drop_down(id!(dropdown)).changed(&actions) {
+            log!("DROPDOWN SELECTED index {}", selected);
+            let selected_label = self.ui.drop_down(id!(dropdown)).selected_label();
+            log!("DROPDOWN SELECTED label {}", selected_label);
+        }
     if let Some(txt) = self.ui.text_input(id!(simpletextinput)).changed(&actions){  // when text input changes
         log!("TEXTBOX CHANGED {}", self.counter);   // output to console
         self.counter += 1;
@@ -632,13 +637,13 @@ impl AppMain for App {
 // Define application entry point
 app_main!(App);
 
-#[derive(Live, LiveHook, PartialEq, LiveAtomic, Debug, LiveRead)]
-pub enum DropDownEnum {
-    #[pick]
-    ValueOne,
-    ValueTwo,
-    Thrice,
-    FourthValue,
-    OptionE,
-    Hexagons,
-}
+// #[derive(Live, LiveHook, PartialEq, LiveAtomic, Debug, LiveRead)]
+// pub enum DropDownEnum {
+//     #[pick]
+//     ValueOne,
+//     ValueTwo,
+//     Thrice,
+//     FourthValue,
+//     OptionE,
+//     Hexagons,
+// }
