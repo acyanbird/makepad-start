@@ -637,13 +637,13 @@ impl AppMain for App {
 // Define application entry point
 app_main!(App);
 
-// #[derive(Live, LiveHook, PartialEq, LiveAtomic, Debug, LiveRead)]
-// pub enum DropDownEnum {
-//     #[pick]
-//     ValueOne,
-//     ValueTwo,
-//     Thrice,
-//     FourthValue,
-//     OptionE,
-//     Hexagons,
-// }
+#[derive(Live, LiveHook, PartialEq, LiveAtomic, Debug, LiveRead)]
+pub enum DropDownEnum {
+    #[pick]
+    ValueOne,
+    ValueTwo,
+    Thrice,
+    FourthValue,
+    OptionE,
+    Hexagons,
+}
