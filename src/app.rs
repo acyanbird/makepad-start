@@ -596,6 +596,13 @@ impl LiveRegister for App {
 
 impl MatchEvent for App{
     fn handle_actions(&mut self, cx: &mut Cx, actions:&Actions){
+        for action in actions.iter() {
+            if let HtmlLinkAction::Clicked { url, .. } = action.as_widget_action().cast() {
+                  //robius_open::Uri::new(&url).open() 
+                  log!("URL CLICKED: {}", url);
+            }
+        }
+
     if let Some(txt) = self.ui.text_input(id!(simpletextinput)).changed(&actions){  // when text input changes
         log!("TEXTBOX CHANGED {}", self.counter);   // output to console
         self.counter += 1;
