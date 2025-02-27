@@ -568,12 +568,12 @@ live_design! {
                     <ZooGroup> {
                         <Markdown> {
                             width:Fill, height: Fit,
-                            body:"# Headline 1 \n ## Headline 2 \n ### Headline 3 \n #### Headline 4 \n This is standard text with a  \n\n line break a short ~~strike through~~ demo.\n\n *Italic text* \n\n **Bold text** \n\n - Bullet\n - Another bullet\n\n - Third bullet\n\n 1. Numbered list Bullet\n 2. Another list entry\n\n 3. Third list entry\n\n `Monospaced text`\n\n> This is a quote.\n\nThis is `inline code`.\n\n ```code block
-                            ```"
+                            body:"# Headline 1 \n ## Headline 2 \n ### Headline 3 \n #### Headline 4 \n This is standard text with a  \n\n line break a short ~~strike through~~ demo.\n\n *Italic text* \n\n **Bold text** \n\n - Bullet\n - Another bullet\n\n - Third bullet\n\n 1. Numbered list Bullet\n 2. Another list entry\n\n 3. Third list entry\n\n `Monospaced text`\n\n> This is a quote.\n\nThis is `inline code`.\n\n ```
+                            code block
+                            ``` "
                         }
                     }
                 }
-
                 <ZooHeader> {
                     title = {text:"<Image>"}
                     <ZooDesc> {text:"A static inline image from a resource."}
@@ -1214,6 +1214,13 @@ impl LiveRegister for App {
 
 impl MatchEvent for App{
     fn handle_actions(&mut self, cx: &mut Cx, actions:&Actions){
+        for action in actions.iter() {
+            if let HtmlLinkAction::Clicked { url, .. } = action.as_widget_action().cast() {
+                  //robius_open::Uri::new(&url).open() 
+                  log!("URL CLICKED: {}", url);
+            }
+        }
+
         // Handle DropDown selection change
         if let Some(selected) = self.ui.drop_down(id!(dropdown)).changed(&actions) {
             log!("DROPDOWN SELECTED index {}", selected);
