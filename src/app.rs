@@ -1,6 +1,4 @@
 use makepad_widgets::*; // Import Makepad Widgets package
-use makepad_platform::live_atomic::*;
-use crate::typing_animation::*; // Import TypingAnimation component
 
 
 // Define live_design macro for declaring UI components and layout
