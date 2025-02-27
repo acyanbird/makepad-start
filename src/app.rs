@@ -1198,7 +1198,9 @@ live_design! {
                     <View> {
                         width: Fill, 
                         height: Fit,
-                        flow: Right
+                        flow: Right,
+                        padding: 20,
+                        spacing: 20
                     typing_animation = <TypingAnimation> {
                         margin: {top: 1.1, left: -4 }
                         padding: 0.0,
@@ -1207,7 +1209,7 @@ live_design! {
                         }
                         }
                         typing_button = <Button> {
-                            text: "Stop typing",
+                            text: "Start typing",
                         }
 
                     }
@@ -1229,7 +1231,7 @@ pub struct App {
     #[live]
     ui: WidgetRef, // UI component reference
     #[rust] counter: usize,  // use rust instead of live for counter
-    #[rust] animation_stopped: bool    // default false
+    #[rust] typing: bool    // default false
 }
 
 // Implement LiveRegister trait for registering live design
@@ -1247,16 +1249,20 @@ impl MatchEvent for App{
         let ui = self.ui.clone();
 
         if self.ui.button(id!(typing_button)).clicked(&actions) {
-            log!("typing BUTTON CLICKED {}", self.animation_stopped);
+            // log!("typing BUTTON CLICKED {}", self.typing);
             let typing_animation = self.ui.typing_animation(id!(typing_animation));
-            if !self.animation_stopped {
+            let type_button = self.ui.button(id!(typing_button));
+            if !self.typing {
                 // false to true, stop animation
-                typing_animation.stop_animation();
-                self.animation_stopped = !self.animation_stopped;
+                typing_animation.animate(cx);
+                self.typing = !self.typing;
+                type_button.set_text(cx, "Stop typing");
+
             } else {
                 // true to false, start animation
-                typing_animation.animate(cx);
-                self.animation_stopped = !self.animation_stopped;
+                typing_animation.stop_animation();
+                self.typing = !self.typing;
+                type_button.set_text(cx, "Start typing");
             }
         }
     
