@@ -1,4 +1,7 @@
 use makepad_widgets::*; // Import Makepad Widgets package
+use crate::typing_animation::TypingAnimationWidgetRefExt;
+
+
 
 
 // Define live_design macro for declaring UI components and layout
@@ -8,6 +11,7 @@ live_design! {
     use link::shaders::*;
     use link::widgets::*;
     use crate::typing_animation::*;
+    
 
     // define color of background container
     COLOR_CONTAINER = (THEME_COLOR_D_1)
@@ -1191,13 +1195,23 @@ live_design! {
                 <ZooHeader> {
                     title = {text:"Animation"}
                     <ZooDesc> {text:"Typing animation"}
+                    <View> {
+                        width: Fill, 
+                        height: Fit,
+                        flow: Right
                     typing_animation = <TypingAnimation> {
                         margin: {top: 1.1, left: -4 }
                         padding: 0.0,
                         draw_bg: {
                             color: (#fff),
                         }
+                        }
+                        typing_button = <Button> {
+                            text: "Stop typing",
+                        }
+
                     }
+                }
                 }
 
             }
@@ -1205,7 +1219,7 @@ live_design! {
 
             }
         }
-    }
+    
 
 
 
@@ -1214,7 +1228,8 @@ live_design! {
 pub struct App {
     #[live]
     ui: WidgetRef, // UI component reference
-    #[rust] counter: usize  // use rust instead of live for counter
+    #[rust] counter: usize,  // use rust instead of live for counter
+    #[rust] animation_stopped: bool    // default false
 }
 
 // Implement LiveRegister trait for registering live design
@@ -1223,6 +1238,7 @@ impl LiveRegister for App {
         // Register Makepad Widgets' live design
         makepad_widgets::live_design(cx);
         crate::typing_animation::live_design(cx);
+
     }
 }
 
@@ -1230,6 +1246,19 @@ impl MatchEvent for App{
     fn handle_actions(&mut self, cx: &mut Cx, actions:&Actions){
         let ui = self.ui.clone();
 
+        if self.ui.button(id!(typing_button)).clicked(&actions) {
+            log!("typing BUTTON CLICKED {}", self.animation_stopped);
+            let typing_animation = self.ui.typing_animation(id!(typing_animation));
+            if !self.animation_stopped {
+                // false to true, stop animation
+                typing_animation.stop_animation();
+                self.animation_stopped = !self.animation_stopped;
+            } else {
+                // true to false, start animation
+                typing_animation.animate(cx);
+                self.animation_stopped = !self.animation_stopped;
+            }
+        }
     
     ui.radio_button_set(ids!(radios_demo.radio1, radios_demo.radio2, radios_demo.radio3, radios_demo.radio4))
     .selected_to_visible(cx, &ui, actions, ids!(radios_demo.radio1, radios_demo.radio2, radios_demo.radio3, radios_demo.radio4));

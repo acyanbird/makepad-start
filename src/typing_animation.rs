@@ -60,10 +60,10 @@ impl Widget for TypingAnimation {
             self.time += ne.time as f32;    // ne.time convert to f32       
             self.time = (self.time.round() as u32 % 360) as f32;
             // range in 0 to 360
-            self.redraw(cx);
             if !self.is_play {
                 return
             }
+            self.redraw(cx);
             self.next_frame = cx.new_next_frame();
         }
 
@@ -88,6 +88,8 @@ impl TypingAnimationRef {
     pub fn stop_animation(&self) {
         if let Some(mut inner) = self.borrow_mut() {
             inner.is_play = false;
+            inner.next_frame = NextFrame::default(); // 停止请求下一帧事件
+
         }
     }
 }
